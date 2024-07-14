@@ -35,12 +35,16 @@ items.forEach(function(item){
             let box1=document.getElementById(div1);
             let box2=document.getElementById(div2);
                  
-            box1.parentNode.insertBefore(box1, box2.nextSibling);
+            let temp=box1.innerHTML;
+			box1.innerHTML=box2.innerHTML;
+			box2.innerHTML=temp;
+			
 
             // Update ids after swapping
             items.forEach((item, index) => {
                 item.id = `item${index + 1}`;
             });
+			cy.get('.items').scrollLeft(10);
             window.localStorage.removeItem('dragstart');
         }
 
